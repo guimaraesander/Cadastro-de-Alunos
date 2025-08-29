@@ -1,4 +1,4 @@
-// server.js
+
 
 const express = require('express');
 // Importa os arquivos de rotas que criamos
