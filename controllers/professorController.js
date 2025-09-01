@@ -1,9 +1,9 @@
-// controllers/professorController.js
+
 
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// GET /professores: Listar todos os professores
+// GET - Listar todos os professores
 exports.listarProfessores = async (req, res) => {
   try {
     const professores = await prisma.professor.findMany();
@@ -13,7 +13,7 @@ exports.listarProfessores = async (req, res) => {
   }
 };
 
-// POST /professores: Cadastrar um novo professor
+// POST - Cadastrar um novo professor
 exports.criarProfessor = async (req, res) => {
   const { nome, email, idade } = req.body;
   if (!nome || !email || !idade) {
@@ -34,7 +34,7 @@ exports.criarProfessor = async (req, res) => {
   }
 };
 
-// PUT /professores/:id: Atualizar um professor
+// PUT - Atualizar um professor
 exports.atualizarProfessor = async (req, res) => {
     const { id } = req.params;
     const { nome, email } = req.body;
@@ -53,7 +53,7 @@ exports.atualizarProfessor = async (req, res) => {
     }
 };
 
-// DELETE /professores/:id: Excluir um professor
+// DELETE - Excluir um professor
 exports.excluirProfessor = async (req, res) => {
     const { id } = req.params;
     try {

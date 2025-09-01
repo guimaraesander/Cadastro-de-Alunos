@@ -1,9 +1,9 @@
-// controllers/alunoController.js
+
 
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// GET /alunos: Listar todos os alunos
+// GET - Listar todos os alunos
 exports.listarAlunos = async (req, res) => {
   try {
     const alunos = await prisma.aluno.findMany();
@@ -13,7 +13,7 @@ exports.listarAlunos = async (req, res) => {
   }
 };
 
-// POST /alunos: Cadastrar um novo aluno
+// POST - Cadastrar um novo aluno
 exports.criarAluno = async (req, res) => {
   const { nome, email, idade } = req.body;
   if (!nome || !email || !idade) {
@@ -34,7 +34,7 @@ exports.criarAluno = async (req, res) => {
   }
 };
 
-// PUT /alunos/:id: Atualizar nome e e-mail de um aluno
+// PUT - Atualizar nome e e-mail de um aluno
 exports.atualizarAluno = async (req, res) => {
     const { id } = req.params;
     const { nome, email } = req.body;
@@ -46,7 +46,7 @@ exports.atualizarAluno = async (req, res) => {
         });
         res.json(alunoAtualizado);
     } catch (error) {
-        // Erro do Prisma para "registro não encontrado"
+        // Erro "registro não encontrado"
         if (error.code === 'P2025') {
             return res.status(404).send('Aluno não encontrado.');
         }
@@ -54,14 +54,14 @@ exports.atualizarAluno = async (req, res) => {
     }
 };
 
-// DELETE /alunos/:id: Excluir um aluno
+// DELETE - Excluir um aluno
 exports.excluirAluno = async (req, res) => {
     const { id } = req.params;
     try {
         await prisma.aluno.delete({
             where: { id: parseInt(id) },
         });
-        res.status(204).send(); // 204: Sucesso, sem conteúdo para retornar
+        res.status(204).send(); 
     } catch (error) {
         if (error.code === 'P2025') {
             return res.status(404).send('Aluno não encontrado.');
