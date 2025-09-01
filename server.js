@@ -8,7 +8,7 @@ const professorRotas = require('./rotas/professorRotas');
 const app = express();
 const port = 3001; 
 
-//
+// Tratamento do erro
 app.use(express.urlencoded({ extended: true }));
 
 
